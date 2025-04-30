@@ -10,11 +10,12 @@ def main():
     parser.add_argument("-d", "--directory", required=True)
     parser.add_argument("-o", "--output", required=True)
     parser.add_argument("-f", "--force", default=False, action='store_true', required=False)
-    
+
     args = parser.parse_args()
 
     if Path(args.output).exists() and not args.force:
         print(f'{args.output!r} exists. Will not rewrite unless forced.')
+        exit()
 
     data_dir = Path(args.directory)
     full_df = pd.concat(
